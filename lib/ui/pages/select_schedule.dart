@@ -1,10 +1,14 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:ui';
+
+import 'package:flutix_kel_12/ui/pages/signUp_page.dart';
 import 'package:flutter/material.dart';
 
 class SelectSchedulePage extends StatelessWidget {
   SelectSchedulePage({super.key});
   
+  final List<String> dates = ['13.00', '19.00', '20.00'];
   final List<String> genres = ['Horror', 'Music', 'Action', 'Drama', 'War', 'Crime'];
 
   @override
@@ -59,38 +63,40 @@ class SelectSchedulePage extends StatelessWidget {
             ),
             Expanded(
               child: GridView.builder(
+                scrollDirection: Axis.horizontal,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
+                  crossAxisCount: 1,
                   crossAxisSpacing: 30.0,
                   mainAxisSpacing: 30.0,
-                  childAspectRatio: (115 / 44),
+                  childAspectRatio: (50 / 50),
                 ),
-                itemCount: genres.length,
+                itemCount: dates.length,
                 itemBuilder: (context, index) {
                   return ElevatedButton(
                     onPressed: () {
                       // Tambahkan logika yang sesuai ketika tombol ditekan
                     },
                     style: ElevatedButton.styleFrom(
+                      maximumSize:Size.fromHeight(40),
                       backgroundColor: Color(0x4CD9D9D9),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
                       ),
                     ),
                     child: Container(
-                      width: 115,
-                      height: 44,
+                      width: 264,
+                      height: 115,
                       child: Center(
                         child: Text(
-                          genres[index],
-                          textAlign: TextAlign.center,
+                          dates[index],
+                          textAlign: TextAlign.right,
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,
                             fontFamily: 'Inter',
                             fontWeight: FontWeight.w400,
                             height: 0.09,
-                            letterSpacing: -0.32,
+                            letterSpacing: 0.32,
                           ),
                         ),
                       ),
@@ -100,7 +106,7 @@ class SelectSchedulePage extends StatelessWidget {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: 50),
+              margin: EdgeInsets.only(top: 40),
               width: 264,
               height: 60,
               child: Text(
@@ -157,7 +163,7 @@ class SelectSchedulePage extends StatelessWidget {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: 141),
+              margin: EdgeInsets.only(top: 24),
               child: Row(
                 children: <Widget>[
                   Text(
@@ -171,21 +177,29 @@ class SelectSchedulePage extends StatelessWidget {
                       height: 0,
                     ),
                   ),
-                  Container(
-                    margin: EdgeInsets.only(left: 100),
-                    child: ElevatedButton(
-                      onPressed:() {
-                        
-                      },
-                      style:ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
+                  Expanded(
+                    child: Container(
+                      alignment: Alignment.centerRight,
+                      child: ElevatedButton(
+                        onPressed:() {
+                          Navigator.push(
+                            context, 
+                            MaterialPageRoute(
+                              builder: (context) => SignUpPage()
+                            )
+                          );
+                        },
+                        style:ButtonStyle(
+                          alignment: Alignment.center,
+                          backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
+                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50),
+                            )
                           )
-                        )
+                        ),
+                        child: Icon(Icons.arrow_forward, color: Colors.white),
                       ),
-                      child: Icon(Icons.arrow_forward, color: Colors.white),
                     ),
                   )
                 ],

@@ -1,6 +1,8 @@
 import 'package:flutix_kel_12/ui/pages/user_profile.dart';
 import 'package:flutter/material.dart';
 
+import 'signUp_page.dart';
+
 class SignInPage extends StatelessWidget {
   const SignInPage({Key? key});
 
@@ -34,6 +36,32 @@ class SignInPage extends StatelessWidget {
               _buildInputField("Email Address"),
               _buildInputField("Password"),
               _buildSignInButton(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context, 
+                        MaterialPageRoute(
+                          builder: (context) => const SignUpPage()
+                        )
+                      );
+                    },
+                    child: const Text(
+                      'Create New Account',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color(0xFF808080),
+                        fontSize: 12,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w700,
+                        height: 0,
+                      ),
+                    ),
+                  ),
+                ],
+              )
             ],
           ),
         ),

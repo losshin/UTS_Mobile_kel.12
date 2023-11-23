@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, avoid_single_cascade_in_expression_statements
 
 import 'package:another_flushbar/flushbar.dart';
+import 'package:flutix_kel_12/ui/pages/SignIn.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -56,6 +57,9 @@ class __SignUpState extends State<SignUpPage> {
                         alignment: Alignment.centerLeft,
                         child: GestureDetector(
                           onTap: () {
+                            Navigator.pushNamed(
+                              context, '/signIn'
+                            );
                             // context.bloc<PageBloc>().add(GoToSplashPage());
                           },
                           child: Icon(Icons.arrow_back, color: Colors.white),
@@ -82,7 +86,7 @@ class __SignUpState extends State<SignUpPage> {
                   height: 104,
                   child: Stack(
                     children: <Widget>[
-                      Container(
+                       Container(
                         height: 90,
                         width: 90,
                         decoration: BoxDecoration(
@@ -111,7 +115,9 @@ class __SignUpState extends State<SignUpPage> {
                             height: 28,
                             width: 28,
                             decoration: BoxDecoration(
+                              // color: Colors.amber,
                               shape: BoxShape.circle,
+                              image: DecorationImage(image: AssetImage("android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png")),
                               // image: DecorationImage(
                               //   image: AssetImage(
                               //     (widget.registrationData.profileImage ==null)? "assets/btn_add_photo.png" : "assets/btn_del_photo.png"
@@ -130,8 +136,6 @@ class __SignUpState extends State<SignUpPage> {
                 TextField(
                   controller: nameController,
                   decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10)
                     ),

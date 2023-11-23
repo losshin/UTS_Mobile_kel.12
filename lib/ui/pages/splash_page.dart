@@ -1,4 +1,5 @@
 import 'package:flutix_kel_12/ui/pages/SignIn.dart';
+import 'package:flutix_kel_12/ui/pages/signUp_page.dart';
 import 'package:flutter/material.dart';
 
 class SplashPage extends StatelessWidget {
@@ -108,7 +109,7 @@ class SplashPage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const SignInPage(),                      
+                        builder: (context) => SignUpPage(),                      
                       )
                     );
                   }
@@ -118,7 +119,14 @@ class SplashPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context, 
+                      MaterialPageRoute(
+                        builder: (context) => const SignInPage()
+                      )
+                    );
+                  },
                   child: const Text(
                     'Sign In To My Account',
                     textAlign: TextAlign.center,
