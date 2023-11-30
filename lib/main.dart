@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       initialRoute: '/',
-      routes: {
+      routes: <String, WidgetBuilder>{
         '/' : (context) => const SplashPage(),
         '/signUp' : (context) => const SignUpPage(),
         '/signIn' : (context) => const SplashPage(),
