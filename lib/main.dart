@@ -1,17 +1,24 @@
-import 'package:flutix_kel_12/ui/pages/checkout_page.dart';
-import 'package:flutix_kel_12/ui/pages/confirmationPage.dart';
-import 'package:flutix_kel_12/ui/pages/splash_page.dart';
-import 'package:flutix_kel_12/ui/pages/success_checkout.dart';
-import 'package:flutix_kel_12/ui/pages/user_profile.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:utsmobile/EditProfil.dart';
+import 'Profil.dart';
+import 'package:utsmobile/MyMovie.dart';
+import 'package:utsmobile/Registrasi.dart';
+import 'package:utsmobile/SignIn.dart';
+import 'package:utsmobile/Splash_page.dart';
+import 'package:utsmobile/SuccesTopUp.dart';
+import 'package:utsmobile/firebase_options.dart';
+import 'DetailTicket.dart';
+import 'Home.dart'; 
+import 'package:firebase_core/firebase_core.dart';
+import 'Auth.dart';
 
-import 'ui/pages/movies_details_page.dart';
-import 'ui/pages/select_seat.dart';
-import 'ui/pages/select_schedule.dart';
-import 'ui/pages/signUp_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -22,25 +29,23 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      title: 'Flutix',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 93, 0, 255)),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      initialRoute: '/',
-      routes: <String, WidgetBuilder>{
-        '/' : (context) => const SplashPage(),
-        '/signUp' : (context) => const SignUpPage(),
-        '/signIn' : (context) => const SplashPage(),
-        '/userProfile' : (context) => UserProfilePage(),
-        '/confirmationPage' : (context) => const ConfirmationPage(),
-        '/moviesDetails' : (context) => const MoviesDetailsPage(),
-        '/selectSchedule' : (context) => SelectSchedulePage(),
-        '/selectSeat' : (context) => const SelectSeatPage(),
-        '/checkout' : (context) => const CheckoutPage(),
-        '/successCheckout' : (context) => const SuccessCheckout(),
-      },
+      home: StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Home();
+          } else {
+            return SignInPage();
+          }
+        },
+      ),
     );
   }
 }
+
